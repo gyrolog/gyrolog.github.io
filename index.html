@@ -1107,7 +1107,7 @@ function gyroFab(){if(S.dlg)return'';if(isCrew())return'';const onGyroChat=(S.vi
 function vehMenuHTML(){return S.setv?`<div class="row"><button data-act="vhome">${ico('back')} Véhicules</button></div>${setVdet()}`:setVeh()}
 function render(){ctlRoll();tickDigests();markSeen();persist();syncSched();tickStreak();
 const crew=isCrew(),V=S.view;
-if(crew){const me=meName();if((S.role[me]||'amb')!=='taxi'){S.taskAnn=S.taskAnn||{};const news=(S.tasks||[]).filter(t=>(t.to===me||t.to==='all')&&t.at>(S.taskAnn[me]||''));if(news.length){const last=news[0];speak((news.length>1?'Tu as '+news.length+' nouvelles tâches. La dernière : ':'Nouvelle tâche : ')+last.txt);S.taskAnn[me]=last.at}}}
+if(crew){const me=meName();if((S.role[me]||'amb')!=='taxi'){S.taskAnn=S.taskAnn||{};const news=(S.tasks||[]).filter(t=>(t.to===me||t.to==='all')&&t.at>(S.taskAnn[me]||''));if(news.length){const last=news[0];speak(news.length>1?'De nouvelles tâches sont arrivées !':'Une nouvelle tâche est arrivée !');S.taskAnn[me]=last.at}}}
 const body=V==='stock'?stockHTML():V==='veh'?vehMenuHTML():V==='set'?setHTML():V==='argus'?(S.sel?vehicleHTML(veh(S.sel)):argusHome()):V==='chat'?chatHTML(false):V==='gchat'?chatHTML(true):V==='gdefis'?defisHTML():V==='tadmin'?tadminHTML():V==='taches'?tachesHTML():gyroHTML();
 const nu=unread(),rq=reqP().length,tp=(S.tasks||[]).filter(t=>!t.done).length,va=S.veh.filter(v=>worst(v)!=='ok').length;
 const nb=(v,i,l,b,g)=>`<button class="nv ${V===v?'on':''}" data-act="view" data-v="${v}"${V===v?' aria-current="page"':''}>${ico(i)}<span>${l}</span>${b?`<span class="bdg${g?' g':''}">${b}</span>`:''}</button>`;
